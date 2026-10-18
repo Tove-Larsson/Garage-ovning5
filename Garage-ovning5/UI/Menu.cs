@@ -59,7 +59,56 @@ namespace Garage_ovning5.UI
 					Console.WriteLine("Invalid input, please try again");
 				}
 			}
-			// TODO: go to the garage sub-menu from here 
+			GarageMenu();
+		}
+
+		public void GarageMenu()
+		{
+			bool running = true;
+
+			while (running)
+			{
+
+				Console.WriteLine("========= Garage menu =========");
+				Console.WriteLine("Please select what you want to do!");
+
+				Console.WriteLine("1. Park a vehicle");
+				Console.WriteLine("2. Retrieve a vehicle");
+				Console.WriteLine("3. List all parked vehicles");
+				Console.WriteLine("4. List vehicle types and number of vehicles");
+				Console.WriteLine("5. Search vehicles");
+				Console.WriteLine("0. Back to main menu");
+
+				string? selectedChoice = Console.ReadLine();
+
+				switch (selectedChoice)
+				{
+					case "1":
+						Console.WriteLine("TODO: Park vehicle functionality here");
+						break;
+					case "2":
+						Console.WriteLine("TODO: Retrieval of vehicle functionality here");
+						break;
+					case "3":
+						Console.WriteLine("TODO: List all parked vehicles functionality here");
+						break;
+					case "4":
+						Console.WriteLine("TODO: List vehicle types and count of them here ");
+						break;
+					case "5":
+						Console.WriteLine("TODO: Searching on a vehicle here");
+						break;
+					case "0":
+						Console.WriteLine("Back to main menu!");
+						running = false;
+						break;
+					default:
+						Console.WriteLine("Invalid input, please try again");
+						break;
+				}
+
+			}
+
 		}
 	}
 }

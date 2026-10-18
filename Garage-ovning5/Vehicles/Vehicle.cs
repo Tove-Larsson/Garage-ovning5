@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Garage_ovning5.Vehicles
 {
-	internal class Vehicle
+	internal abstract class Vehicle
 	{
 
 		private string _licensePlateNumber;

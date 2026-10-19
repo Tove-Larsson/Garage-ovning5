@@ -1,4 +1,5 @@
 ﻿using Garage_ovning5.Garages;
+using Garage_ovning5.Vehicles;
 using System;
 
 namespace Garage_ovning5.UI
@@ -84,7 +85,7 @@ namespace Garage_ovning5.UI
 				switch (selectedChoice)
 				{
 					case "1":
-						Console.WriteLine("TODO: Park vehicle functionality here");
+						ParkVehicle();
 						break;
 					case "2":
 						Console.WriteLine("TODO: Retrieval of vehicle functionality here");
@@ -108,7 +109,78 @@ namespace Garage_ovning5.UI
 				}
 
 			}
+		}
 
+		public void ParkVehicle()
+		{
+			if (_garage == null)
+			{
+				Console.WriteLine("No garage exists");
+				return;
+			}
+
+			VehicleType? type = ReadVehicleType();
+			if (type == null)
+			{
+				return;
+			}
+
+
+			try
+			{
+
+				Vehicle? vehicle = VehicleCreator.CreateVehicle(type.Value);
+				if (vehicle == null)
+				{
+					Console.WriteLine("The vehicle was not created");
+					return;
+				}
+
+				bool parked = _garage.ParkVehicle(vehicle);
+
+				if (parked)
+				{
+					Console.WriteLine($"The {type} with {vehicle.LicensePlateNumber} license plate number was parked successfully!");
+				}
+				else
+				{
+					Console.WriteLine("The garage was full!");
+				}
+
+			}
+			catch (ArgumentException ex)
+			{
+				Console.WriteLine(ex.Message);
+				return;
+			}
+		
+		}
+
+		private VehicleType? ReadVehicleType()
+		{
+			while (true)
+			{
+				Console.WriteLine("What type of vehicle do you want to park?");
+				Console.WriteLine("1. Car");
+				Console.WriteLine("2. Motorcycle");
+				Console.WriteLine("3. Bus");
+				Console.WriteLine("4. Airplane");
+				Console.WriteLine("5. Boat");
+				Console.WriteLine("0. Cancel");
+
+				switch (Console.ReadLine())
+				{
+					case "1": return VehicleType.Car;
+					case "2": return VehicleType.Motorcycle;
+					case "3": return VehicleType.Bus;
+					case "4": return VehicleType.Airplane;
+					case "5": return VehicleType.Boat;
+					case "0": return null;
+					default:
+						Console.WriteLine("Invalid input, please try again");
+						break;
+				}
+			}
 		}
 	}
 }

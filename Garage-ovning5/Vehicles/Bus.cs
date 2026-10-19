@@ -24,5 +24,11 @@ namespace Garage_ovning5.Vehicles
 		{
 			NumberOfSeats = numberOfSeats;
 		}
+
+		public override string ToString()
+		{
+			return $"{base.ToString()}" +
+				$"Number of seats: {NumberOfSeats}\n";
+		}
 	}
 }

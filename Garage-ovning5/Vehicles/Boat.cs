@@ -22,5 +22,11 @@ namespace Garage_ovning5.Vehicles
 		{
 			Length = length;
 		}
+
+		public override string ToString()
+		{
+			return $"{base.ToString()}" +
+				$"Length: {Length}\n";
+		}
 	}
 }

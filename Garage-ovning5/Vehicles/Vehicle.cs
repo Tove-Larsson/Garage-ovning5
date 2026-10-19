@@ -67,11 +67,12 @@ namespace Garage_ovning5.Vehicles
 
 		}
 
-
-
 		public override string ToString()
 		{
-			return $"The vehicle license plate number: {_licensePlateNumber}, color: {_color} amount of wheels: {_numberOfWheels}";
+			return $"Vehicle type: {GetType().Name}\n" +
+				   $"License plate: {LicensePlateNumber}\n" +
+				   $"Color: {Color}\n" +
+				   $"Number of wheels: {NumberOfWheels}\n";
 		}
 	}
 }

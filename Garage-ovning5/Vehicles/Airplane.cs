@@ -25,5 +25,11 @@ namespace Garage_ovning5.Vehicles
 		{
 			NumberOfEngines = numberOfEngines;
 		}
+
+		public override string ToString()
+		{
+			return $"{base.ToString()}" +
+				$"Number of engines: {NumberOfEngines}\n";
+		}
 	}
 }

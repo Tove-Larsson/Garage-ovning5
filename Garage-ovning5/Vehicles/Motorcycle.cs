@@ -23,5 +23,11 @@ namespace Garage_ovning5.Vehicles
 		{
 			CylinderVolume = cylinderVolume;
 		}
+
+		public override string ToString()
+		{
+			return $"{base.ToString()}" +
+				$"Cylinder volume: {CylinderVolume}\n";
+		}
 	}
 }

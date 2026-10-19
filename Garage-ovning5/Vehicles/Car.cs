@@ -19,5 +19,11 @@ namespace Garage_ovning5.Vehicles
 		{
 			FuelType = fuelType;
 		}
+
+		public override string ToString()
+		{
+			return $"{base.ToString()}" +
+				$"Fuel type: {FuelType}\n";
+		}
 	}
 }

@@ -13,6 +13,10 @@ namespace Garage_ovning5.Vehicles
 				_fuelType = value;
 			}
 		}
+		public override VehicleType VehicleType
+		{
+			get { return VehicleType.Car; }
+		}
 
 		public Car(string licensePlateNumber, string color, int numberOfWheels, FuelType fuelType)
 			: base(licensePlateNumber, color, numberOfWheels)

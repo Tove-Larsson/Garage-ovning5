@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Garage_ovning5.UI;
+using System;
 
 namespace Garage_ovning5
 {
@@ -6,7 +7,9 @@ namespace Garage_ovning5
 	{
 		static void Main(string[] args)
 		{
-			Console.WriteLine("Hello, World!");
+			Menu menu = new Menu();
+
+			menu.MainMenu();
 		}
 	}
 }

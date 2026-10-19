@@ -20,6 +20,11 @@ namespace Garage_ovning5.Vehicles
 			}
 		}
 
+		public override VehicleType VehicleType
+		{
+			get { return VehicleType.Bus; }
+		}
+
 		public Bus(string licensePlateNumber, string color, int numberOfWheels, int numberOfSeats) : base(licensePlateNumber, color, numberOfWheels)
 		{
 			NumberOfSeats = numberOfSeats;

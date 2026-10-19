@@ -58,6 +58,8 @@ namespace Garage_ovning5.Vehicles
 			}
 		}
 
+		public abstract VehicleType VehicleType { get; }
+
 
 		public Vehicle(string licensePlateNumber, string color, int numberOfWheels)
 		{

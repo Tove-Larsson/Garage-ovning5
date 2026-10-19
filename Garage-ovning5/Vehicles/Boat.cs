@@ -18,6 +18,12 @@ namespace Garage_ovning5.Vehicles
 				_length = value;
 			}
 		}
+
+		public override VehicleType VehicleType
+		{
+			get { return VehicleType.Boat; }
+		}
+
 		public Boat(string licensePlateNumber, string color, double length) : base(licensePlateNumber, color, 0)
 		{
 			Length = length;

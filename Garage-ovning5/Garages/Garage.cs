@@ -98,7 +98,7 @@ namespace Garage_ovning5.Garages
 			}
 		}
 
-		public int CountOfVehicleType(Type type)
+		public int CountOfVehicleType(VehicleType type)
 		{
 			int count = 0;
 
@@ -107,7 +107,7 @@ namespace Garage_ovning5.Garages
 				if (vehicle == null)
 					continue;
 
-				if (vehicle.GetType() == type)
+				if (vehicle.VehicleType == type)
 				{
 					count++;
 				}

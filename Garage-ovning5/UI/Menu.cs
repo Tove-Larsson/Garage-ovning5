@@ -235,11 +235,11 @@ namespace Garage_ovning5.UI
 
 			Console.WriteLine("\n========= Parked vehicle types =========\n");
 
-			Console.WriteLine($"Cars: {_garage.CountOfVehicleType(typeof(Car))}");
-			Console.WriteLine($"Motorcycles: {_garage.CountOfVehicleType(typeof(Motorcycle))}");
-			Console.WriteLine($"Buses: {_garage.CountOfVehicleType(typeof(Bus))}");
-			Console.WriteLine($"Airplanes: {_garage.CountOfVehicleType(typeof(Airplane))}");
-			Console.WriteLine($"Boats: {_garage.CountOfVehicleType(typeof(Boat))}\n");
+			Console.WriteLine($"Cars: {_garage.CountOfVehicleType(VehicleType.Car)}");
+			Console.WriteLine($"Motorcycles: {_garage.CountOfVehicleType(VehicleType.Motorcycle)}");
+			Console.WriteLine($"Buses: {_garage.CountOfVehicleType(VehicleType.Bus)}");
+			Console.WriteLine($"Airplanes: {_garage.CountOfVehicleType(VehicleType.Airplane)}");
+			Console.WriteLine($"Boats: {_garage.CountOfVehicleType(VehicleType.Boat)}\n");
 
 		}
 	}

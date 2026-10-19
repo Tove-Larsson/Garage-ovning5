@@ -88,7 +88,7 @@ namespace Garage_ovning5.UI
 						ParkVehicle();
 						break;
 					case "2":
-						Console.WriteLine("TODO: Retrieval of vehicle functionality here");
+						RetreiveVehical();
 						break;
 					case "3":
 						Console.WriteLine("TODO: List all parked vehicles functionality here");
@@ -180,6 +180,28 @@ namespace Garage_ovning5.UI
 						Console.WriteLine("Invalid input, please try again");
 						break;
 				}
+			}
+		}
+
+		public void RetreiveVehical()
+		{
+			if (_garage == null)
+			{
+				Console.WriteLine("No garage exists");
+				return;
+			}
+
+			string licensePlateNumber = InputHelper.ReadString("Please enter the license plate number of the vehicle you want to retrieve");
+
+			Vehicle? retrievedVehicle = _garage.RemoveVehicle(licensePlateNumber);
+
+			if (retrievedVehicle != null)
+			{
+				Console.WriteLine($"Retrieval of vehicle with license plate number: {retrievedVehicle.LicensePlateNumber} was successful!");
+			}
+			else
+			{
+				Console.WriteLine($"No vehicle with license plate {licensePlateNumber} was found.");
 			}
 		}
 	}

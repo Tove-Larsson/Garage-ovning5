@@ -25,6 +25,30 @@ namespace Garage_ovning5.Garages
 
 			return false;
 		}
+
+		public Vehicle? RemoveVehicle(string licensePlateNumber)
+		{
+			string searchedPlate = licensePlateNumber.Trim().ToUpper();
+
+			for (int i = 0; i < _vehicles.Length; i++)
+			{
+				Vehicle? vehicle = _vehicles[i];
+
+				if (vehicle == null)
+				{
+					continue;
+				}
+
+				if (vehicle.LicensePlateNumber == searchedPlate)
+				{
+					_vehicles[i] = null;
+					return vehicle;
+				}
+
+			}
+
+			return null;
+		}
 	
 	}
 }

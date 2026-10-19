@@ -14,10 +14,11 @@ namespace Garage_ovning5.UI
 
 			while (running)
 			{
-				Console.WriteLine("========= Main Menu =========");
+				Console.WriteLine("\n========= Main Menu =========\n");
 				Console.WriteLine("Please select what you want to do!");
 
 				Console.WriteLine("1. Create a garage");
+				Console.WriteLine("2. Create a garage with pre-parked vehicles");
 				Console.WriteLine("0. Exit program");
 
 				string? selectedChoice = Console.ReadLine();
@@ -26,6 +27,9 @@ namespace Garage_ovning5.UI
 				{
 					case "1":
 						CreateGarage();
+						break;
+					case "2":
+						CreatePreParkedGarage();
 						break;
 					case "0":
 						Console.WriteLine("You chose to end the application, goodbye!");
@@ -63,6 +67,24 @@ namespace Garage_ovning5.UI
 			GarageMenu();
 		}
 
+		public void CreatePreParkedGarage()
+		{
+			Console.WriteLine("Create a pre-parked garage chosen");
+			Console.WriteLine("\nOne vehicle per vehicle type has been created, plus 5 extra parking spaces!\n");
+
+			Garage preParkedGarage = new Garage(10);
+
+			preParkedGarage.ParkVehicle(new Car("Abc123", "Red", 4, FuelType.Gasoline));
+			preParkedGarage.ParkVehicle(new Motorcycle("def345", "Blue", 2, 1000));
+			preParkedGarage.ParkVehicle(new Bus("Did865", "Yellow", 4, 30));
+			preParkedGarage.ParkVehicle(new Airplane("bob261", "Green", 3, 2));
+			preParkedGarage.ParkVehicle(new Boat("hej729", "Silver", 200.5));
+
+			_garage = preParkedGarage;
+			GarageMenu();
+
+		}
+
 		public void GarageMenu()
 		{
 			bool running = true;
@@ -70,7 +92,7 @@ namespace Garage_ovning5.UI
 			while (running)
 			{
 
-				Console.WriteLine("========= Garage menu =========");
+				Console.WriteLine("\n========= Garage menu =========\n");
 				Console.WriteLine("Please select what you want to do!");
 
 				Console.WriteLine("1. Park a vehicle");

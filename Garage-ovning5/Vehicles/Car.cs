@@ -1,21 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace Garage_ovning5.Vehicles
 {
 	internal class Car : Vehicle
 	{
+		private FuelType _fuelType;
 
-		private string _fuelType;
-
-		public string FuelType
+		public FuelType FuelType
 		{
 			get { return _fuelType; }
-			set { _fuelType = value; }
+			set
+			{
+				_fuelType = value;
+			}
 		}
 
-		public Car(string licensePlateNumber, string color, int numberOfWheels, string fuelType) : base(licensePlateNumber, color, numberOfWheels)
+		public Car(string licensePlateNumber, string color, int numberOfWheels, FuelType fuelType)
+			: base(licensePlateNumber, color, numberOfWheels)
 		{
 			FuelType = fuelType;
 		}

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Garage_ovning5.Vehicles
 {
@@ -11,9 +9,16 @@ namespace Garage_ovning5.Vehicles
 		public double Length
 		{
 			get {  return _length; }
-			set { _length = value; }
+			set 
+			{
+				if (value <= 0 || !double.IsFinite(value))
+				{
+					throw new ArgumentException("Length must be a number greater than 0");
+				}
+				_length = value;
+			}
 		}
-		public Boat(string licensePlateNumber, string color, int numberOfWheels, double length) : base(licensePlateNumber, color, numberOfWheels)
+		public Boat(string licensePlateNumber, string color, double length) : base(licensePlateNumber, color, 0)
 		{
 			Length = length;
 		}

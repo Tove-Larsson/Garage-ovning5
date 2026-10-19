@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Garage_ovning5.Vehicles
 {
@@ -12,7 +10,14 @@ namespace Garage_ovning5.Vehicles
 		public int CylinderVolume
 		{
 			get { return _cylinderVolume; }
-			set { _cylinderVolume = value; }
+			set
+			{
+				if (value <= 0)
+				{
+					throw new ArgumentException("Cylinder volume must be greater than 0");
+				}
+				_cylinderVolume = value;
+			}
 		}
 		public Motorcycle(string licensePlateNumber, string color, int numberOfWheels, int cylinderVolume) : base(licensePlateNumber, color, numberOfWheels)
 		{

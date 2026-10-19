@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Garage_ovning5.Vehicles
 {
@@ -12,7 +10,14 @@ namespace Garage_ovning5.Vehicles
 		public int NumberOfEngines
 		{ 
 			get { return _numberOfEngines; } 
-			set { _numberOfEngines = value; }
+			set 
+			{ 
+				if (value < 1)
+				{
+					throw new ArgumentException("Your airplane can not have less than 1 engine");
+				}
+				_numberOfEngines = value; 
+			}
 
 		}
 

@@ -99,7 +99,8 @@ namespace Garage_ovning5.UI
 				Console.WriteLine("2. Retrieve a vehicle");
 				Console.WriteLine("3. List all parked vehicles");
 				Console.WriteLine("4. List parked vehicle types");
-				Console.WriteLine("5. Search vehicles");
+				Console.WriteLine("5. Search for a vehicle with license plate number");
+				Console.WriteLine("6. Search for a vehicle by its properties, one or multiple");
 				Console.WriteLine("0. Back to main menu");
 
 				string? selectedChoice = Console.ReadLine();
@@ -119,7 +120,10 @@ namespace Garage_ovning5.UI
 						ListVehicleType();
 						break;
 					case "5":
-						Console.WriteLine("TODO: Searching on a vehicle here");
+						SearchByLicensePlate();
+						break;
+					case "6":
+						Console.WriteLine("TODO: Search for a vehicles by its properties, one or multiple");
 						break;
 					case "0":
 						Console.WriteLine("Back to main menu!");
@@ -263,6 +267,29 @@ namespace Garage_ovning5.UI
 			Console.WriteLine($"Airplanes: {_garage.CountOfVehicleType(VehicleType.Airplane)}");
 			Console.WriteLine($"Boats: {_garage.CountOfVehicleType(VehicleType.Boat)}\n");
 
+		}
+
+		public void SearchByLicensePlate()
+		{
+			if (_garage == null)
+			{
+				Console.WriteLine("No garage exists");
+				return;
+			}
+			string searchedLicensePlate = InputHelper.ReadString("Please enter a licence plate number to see if it is parked!");
+
+			Vehicle? vehicle = _garage.SearchByLicensePlate(searchedLicensePlate);
+
+			if (vehicle != null)
+			{
+				Console.WriteLine($"\nA parked vehicle with {searchedLicensePlate} was found!\n");
+				Console.WriteLine(vehicle);
+			}
+			else
+			{
+				Console.WriteLine($"\nNo vehicle with license plate {searchedLicensePlate} was found.\n");
+			}
+			
 		}
 	}
 }

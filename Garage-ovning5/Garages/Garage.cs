@@ -15,11 +15,36 @@ namespace Garage_ovning5.Garages
 
 		public bool ParkVehicle(Vehicle vehicle)
 		{
+			if (IsLicensePlateTaken(vehicle.LicensePlateNumber))
+			{
+				return false;
+			}
+
 			for (int i = 0; i < _vehicles.Length; i++)
 			{
 				if (_vehicles[i] == null)
 				{
 					_vehicles[i] = vehicle;
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		public bool IsLicensePlateTaken(string licensePlateNumber)
+		{
+			string searchedPlate = licensePlateNumber.Trim().ToUpper();
+
+			foreach (Vehicle? vehicle in _vehicles)
+			{
+				if (vehicle == null)
+				{
+					continue;
+				}
+
+				if (vehicle.LicensePlateNumber == searchedPlate)
+				{
 					return true;
 				}
 			}

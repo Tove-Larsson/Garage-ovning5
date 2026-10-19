@@ -6,10 +6,8 @@ namespace Garage_ovning5.UI
 	internal static class VehicleCreator
 	{
 
-		public static Vehicle? CreateVehicle(VehicleType type)
+		public static Vehicle? CreateVehicle(VehicleType type, string licensePlateNumber)
 		{
-
-			string licensePlateNumber = InputHelper.ReadString("What is your licence plate number?");
 
 			string color = InputHelper.ReadString("What is the color of your vehicle?");
 

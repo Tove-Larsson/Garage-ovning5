@@ -125,11 +125,18 @@ namespace Garage_ovning5.UI
 				return;
 			}
 
+			string licensePlateNumber = InputHelper.ReadString("What is your vehicles license plate number?");
+
+			if (_garage.IsLicensePlateTaken(licensePlateNumber))
+			{
+				Console.WriteLine($"A vehicle with licence plate number: {licensePlateNumber} already exists");
+				return;
+			}
 
 			try
 			{
 
-				Vehicle? vehicle = VehicleCreator.CreateVehicle(type.Value);
+				Vehicle? vehicle = VehicleCreator.CreateVehicle(type.Value, licensePlateNumber);
 				if (vehicle == null)
 				{
 					Console.WriteLine("The vehicle was not created");
@@ -213,7 +220,7 @@ namespace Garage_ovning5.UI
 				return;
 			}
 
-			Console.WriteLine("\n========= Parked cars =========\n");
+			Console.WriteLine("\n========= Parked vehicles =========\n");
 
 			_garage.ListAllVehicles();
 		}

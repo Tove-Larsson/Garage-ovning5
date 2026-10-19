@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Garage_ovning5.Vehicles
 {
 	internal abstract class Vehicle
 	{
 
-		private string _licensePlateNumber;
-		private string _color;
+		private string _licensePlateNumber = string.Empty;
+		private string _color = string.Empty;
 		private int _numberOfWheels;
 
 
@@ -17,7 +15,19 @@ namespace Garage_ovning5.Vehicles
 			get { return _licensePlateNumber; }
 			set
 			{
-				_licensePlateNumber = value;
+				if (string.IsNullOrWhiteSpace(value))
+				{
+					throw new ArgumentException("License plate number can not be empty");
+				}
+
+				string trimmed = value.Trim();
+
+				if (trimmed.Length < 6)
+				{
+					throw new ArgumentException("License plate number must be at least 6 characters");
+				}
+
+				_licensePlateNumber = trimmed.ToUpper();
 			}
 		}
 
@@ -26,7 +36,12 @@ namespace Garage_ovning5.Vehicles
 			get { return _color; }
 			set
 			{
-				_color = value;
+				if (string.IsNullOrWhiteSpace(value))
+				{
+					throw new ArgumentException("Color can not be empty");
+				}
+
+				_color = value.Trim().ToUpper();
 			}
 		}
 
@@ -35,6 +50,10 @@ namespace Garage_ovning5.Vehicles
 			get { return _numberOfWheels; }
 			set
 			{
+				if (value < 0)
+				{
+					throw new ArgumentException("Number of wheels can not be negative");
+				}
 				_numberOfWheels = value;
 			}
 		}

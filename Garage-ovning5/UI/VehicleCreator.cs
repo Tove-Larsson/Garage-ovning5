@@ -1,8 +1,5 @@
 ﻿using Garage_ovning5.Vehicles;
 using System;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Text;
 
 namespace Garage_ovning5.UI
 {
@@ -20,6 +17,14 @@ namespace Garage_ovning5.UI
 			{
 				case VehicleType.Car:
 					return CreateCar(licensePlateNumber, color);
+				case VehicleType.Motorcycle:
+					return CreateMotorcycle(licensePlateNumber, color);
+				case VehicleType.Bus:
+					return CreateBus(licensePlateNumber, color);
+				case VehicleType.Airplane:
+					return CreateAirplane(licensePlateNumber, color);
+				case VehicleType.Boat:
+					return CreateBoat(licensePlateNumber, color);
 				default:
 					break;
 			}
@@ -31,7 +36,7 @@ namespace Garage_ovning5.UI
 		private static Vehicle? CreateCar(string licensePlateNumber, string color)
 		{
 
-			int numberOfWheels = InputHelper.ReadInt("How many wheels do your vehicle have?");
+			int numberOfWheels = InputHelper.ReadInt("How many wheels do your car have?");
 			FuelType? fuelType = ReadFuelType();
 
 			if (fuelType != null)
@@ -66,8 +71,43 @@ namespace Garage_ovning5.UI
 						break;
 				}
 			}
+		}
+
+		private static Vehicle? CreateMotorcycle(string licensePlateNumber, string color)
+		{
+			int numberOfWheels = InputHelper.ReadInt("How many wheels do your motorcycle have?");
+			int cylinderVolume = InputHelper.ReadInt("What is your motorcycles cylinder volume?");
+
+			return new Motorcycle(licensePlateNumber, color, numberOfWheels, cylinderVolume);
+		}
+
+
+		private static Vehicle? CreateBus(string licensePlateNumber, string color)
+		{
+			int numberOfSeats = InputHelper.ReadInt("How many seats does your bus have?");
+			int numberOfWheels = InputHelper.ReadInt("How many wheels do your bus have?");
+			
+			return new Bus(licensePlateNumber, color, numberOfWheels, numberOfSeats);
+		}
+
+		private static Vehicle? CreateAirplane(string licensePlateNumber, string color)
+		{
+			int numberOfWheels = InputHelper.ReadInt("How many wheels do your airplane have?");
+			int numberOfEngines = InputHelper.ReadInt("How many engines does your airplane have?");
+
+			return new Airplane(licensePlateNumber, color, numberOfWheels, numberOfEngines);
 
 		}
 
+		private static Vehicle? CreateBoat(string licensePlateNumber, string color)
+		{
+
+			Console.WriteLine("What is your boats length?");
+			double length = double.Parse(Console.ReadLine());
+
+			// TODO: replace double.Parse with InputHelper.ReadDouble (crashes on invalid input)
+
+			return new Boat(licensePlateNumber, color, length);
+		}
 	}
 }

@@ -76,7 +76,7 @@ namespace Garage_ovning5.UI
 				Console.WriteLine("1. Park a vehicle");
 				Console.WriteLine("2. Retrieve a vehicle");
 				Console.WriteLine("3. List all parked vehicles");
-				Console.WriteLine("4. List vehicle types and number of vehicles");
+				Console.WriteLine("4. List parked vehicle types");
 				Console.WriteLine("5. Search vehicles");
 				Console.WriteLine("0. Back to main menu");
 
@@ -88,13 +88,13 @@ namespace Garage_ovning5.UI
 						ParkVehicle();
 						break;
 					case "2":
-						RetreiveVehical();
+						RetrieveVehicle();
 						break;
 					case "3":
 						ListParkedVehicles();
 						break;
 					case "4":
-						Console.WriteLine("TODO: List vehicle types and count of them here ");
+						ListVehicleType();
 						break;
 					case "5":
 						Console.WriteLine("TODO: Searching on a vehicle here");
@@ -190,7 +190,7 @@ namespace Garage_ovning5.UI
 			}
 		}
 
-		public void RetreiveVehical()
+		public void RetrieveVehicle()
 		{
 			if (_garage == null)
 			{
@@ -223,6 +223,24 @@ namespace Garage_ovning5.UI
 			Console.WriteLine("\n========= Parked vehicles =========\n");
 
 			_garage.ListAllVehicles();
+		}
+
+		public void ListVehicleType()
+		{
+			if ( _garage == null)
+			{
+				Console.WriteLine("No garage exists");
+				return;
+			}
+
+			Console.WriteLine("\n========= Parked vehicle types =========\n");
+
+			Console.WriteLine($"Cars: {_garage.CountOfVehicleType(typeof(Car))}");
+			Console.WriteLine($"Motorcycles: {_garage.CountOfVehicleType(typeof(Motorcycle))}");
+			Console.WriteLine($"Buses: {_garage.CountOfVehicleType(typeof(Bus))}");
+			Console.WriteLine($"Airplanes: {_garage.CountOfVehicleType(typeof(Airplane))}");
+			Console.WriteLine($"Boats: {_garage.CountOfVehicleType(typeof(Boat))}\n");
+
 		}
 	}
 }

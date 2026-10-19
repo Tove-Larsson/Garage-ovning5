@@ -25,7 +25,7 @@ namespace Garage_ovning5.Vehicles
 			get { return VehicleType.Motorcycle; }
 		}
 
-		public Motorcycle(string licensePlateNumber, string color, int numberOfWheels, int cylinderVolume) : base(licensePlateNumber, color, numberOfWheels)
+		public Motorcycle(string licensePlateNumber, VehicleColor color, int numberOfWheels, int cylinderVolume) : base(licensePlateNumber, color, numberOfWheels)
 		{
 			CylinderVolume = cylinderVolume;
 		}

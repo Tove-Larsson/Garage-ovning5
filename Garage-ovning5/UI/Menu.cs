@@ -74,11 +74,11 @@ namespace Garage_ovning5.UI
 
 			Garage preParkedGarage = new Garage(10);
 
-			preParkedGarage.ParkVehicle(new Car("Abc123", "Red", 4, FuelType.Gasoline));
-			preParkedGarage.ParkVehicle(new Motorcycle("def345", "Blue", 2, 1000));
-			preParkedGarage.ParkVehicle(new Bus("Did865", "Yellow", 4, 30));
-			preParkedGarage.ParkVehicle(new Airplane("bob261", "Green", 3, 2));
-			preParkedGarage.ParkVehicle(new Boat("hej729", "Silver", 200.5));
+			preParkedGarage.ParkVehicle(new Car("Abc123", VehicleColor.Red, 4, FuelType.Gasoline));
+			preParkedGarage.ParkVehicle(new Motorcycle("def345", VehicleColor.Blue, 2, 1000));
+			preParkedGarage.ParkVehicle(new Bus("Did865", VehicleColor.Yellow, 4, 30));
+			preParkedGarage.ParkVehicle(new Airplane("bob261", VehicleColor.Green, 3, 2));
+			preParkedGarage.ParkVehicle(new Boat("hej729", VehicleColor.Silver, 200.5));
 
 			_garage = preParkedGarage;
 			GarageMenu();
@@ -151,6 +151,8 @@ namespace Garage_ovning5.UI
 				return;
 			}
 
+			VehicleColor color = ReadVehicleColor();
+
 			string licensePlateNumber = InputHelper.ReadString("What is your vehicles license plate number?");
 
 			if (_garage.IsLicensePlateTaken(licensePlateNumber))
@@ -162,7 +164,7 @@ namespace Garage_ovning5.UI
 			try
 			{
 
-				Vehicle? vehicle = VehicleCreator.CreateVehicle(type.Value, licensePlateNumber);
+				Vehicle? vehicle = VehicleCreator.CreateVehicle(type.Value, licensePlateNumber, color);
 				if (vehicle == null)
 				{
 					Console.WriteLine("The vehicle was not created");
@@ -193,7 +195,7 @@ namespace Garage_ovning5.UI
 		{
 			while (true)
 			{
-				Console.WriteLine("What type of vehicle do you want to park?");
+				Console.WriteLine("\nWhat type of vehicle do you want to park?\n");
 				Console.WriteLine("1. Car");
 				Console.WriteLine("2. Motorcycle");
 				Console.WriteLine("3. Bus");
@@ -213,6 +215,42 @@ namespace Garage_ovning5.UI
 						Console.WriteLine("Invalid input, please try again");
 						break;
 				}
+			}
+		}
+
+		private VehicleColor ReadVehicleColor()
+		{
+			while (true)
+			{
+				Console.WriteLine("\nWhat color is your vehicle?\n");
+				Console.WriteLine("1. Red");
+				Console.WriteLine("2. Blue");
+				Console.WriteLine("3. Black");
+				Console.WriteLine("4. White");
+				Console.WriteLine("5. Green");
+				Console.WriteLine("6. Yellow");
+				Console.WriteLine("7. Pink");
+				Console.WriteLine("8. Silver");
+				Console.WriteLine("9. Grey");
+				Console.WriteLine("9. Purple");
+
+				switch (Console.ReadLine())
+				{
+					case "1": return VehicleColor.Red;
+					case "2": return VehicleColor.Blue;
+					case "3": return VehicleColor.Black;
+					case "4": return VehicleColor.White;
+					case "5": return VehicleColor.Green;
+					case "6": return VehicleColor.Yellow;
+					case "7": return VehicleColor.Pink;
+					case "8": return VehicleColor.Silver;
+					case "9": return VehicleColor.Grey;
+					case "10": return VehicleColor.Purple;
+					default:
+						Console.WriteLine("Invalid input, please try again");
+						break;
+				}
+
 			}
 		}
 

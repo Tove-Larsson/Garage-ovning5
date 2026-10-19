@@ -6,7 +6,7 @@ namespace Garage_ovning5.Vehicles
 	{
 
 		private string _licensePlateNumber = string.Empty;
-		private string _color = string.Empty;
+		private VehicleColor _color;
 		private int _numberOfWheels;
 
 
@@ -31,18 +31,10 @@ namespace Garage_ovning5.Vehicles
 			}
 		}
 
-		public string Color
+		public VehicleColor Color
 		{
 			get { return _color; }
-			set
-			{
-				if (string.IsNullOrWhiteSpace(value))
-				{
-					throw new ArgumentException("Color can not be empty");
-				}
-
-				_color = value.Trim().ToUpper();
-			}
+			set { _color = value; }
 		}
 
 		public int NumberOfWheels
@@ -61,7 +53,7 @@ namespace Garage_ovning5.Vehicles
 		public abstract VehicleType VehicleType { get; }
 
 
-		public Vehicle(string licensePlateNumber, string color, int numberOfWheels)
+		public Vehicle(string licensePlateNumber, VehicleColor color, int numberOfWheels)
 		{
 			LicensePlateNumber = licensePlateNumber;
 			Color = color;

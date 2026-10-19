@@ -24,7 +24,7 @@ namespace Garage_ovning5.Vehicles
 			get { return VehicleType.Boat; }
 		}
 
-		public Boat(string licensePlateNumber, string color, double length) : base(licensePlateNumber, color, 0)
+		public Boat(string licensePlateNumber, VehicleColor color, double length) : base(licensePlateNumber, color, 0)
 		{
 			Length = length;
 		}

@@ -26,7 +26,7 @@ namespace Garage_ovning5.Vehicles
 			get { return VehicleType.Airplane; }
 		}
 
-		public Airplane(string licensePlateNumber, string color, int numberOfWheels, int numberOfEngines) : base(licensePlateNumber, color, numberOfWheels)
+		public Airplane(string licensePlateNumber, VehicleColor color, int numberOfWheels, int numberOfEngines) : base(licensePlateNumber, color, numberOfWheels)
 		{
 			NumberOfEngines = numberOfEngines;
 		}

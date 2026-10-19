@@ -18,7 +18,7 @@ namespace Garage_ovning5.Vehicles
 			get { return VehicleType.Car; }
 		}
 
-		public Car(string licensePlateNumber, string color, int numberOfWheels, FuelType fuelType)
+		public Car(string licensePlateNumber, VehicleColor color, int numberOfWheels, FuelType fuelType)
 			: base(licensePlateNumber, color, numberOfWheels)
 		{
 			FuelType = fuelType;

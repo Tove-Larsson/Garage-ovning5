@@ -1,4 +1,5 @@
 ﻿using Garage_ovning5.Vehicles;
+using System;
 
 namespace Garage_ovning5.Garages
 {
@@ -49,6 +50,27 @@ namespace Garage_ovning5.Garages
 
 			return null;
 		}
-	
+
+		public void ListAllVehicles()
+		{
+			bool vehicleFound = false;
+
+			foreach (Vehicle? vehicle in _vehicles)
+			{
+				if (vehicle == null)
+				{
+					continue;
+				}
+
+				Console.WriteLine($"{vehicle}\n");
+				vehicleFound = true;
+
+			}
+
+			if (!vehicleFound)
+			{
+				Console.WriteLine("There are no vehicles parked in the garage.\n");
+			}
+		}
 	}
 }

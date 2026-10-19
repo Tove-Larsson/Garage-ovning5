@@ -91,7 +91,7 @@ namespace Garage_ovning5.UI
 						RetreiveVehical();
 						break;
 					case "3":
-						Console.WriteLine("TODO: List all parked vehicles functionality here");
+						ListParkedVehicles();
 						break;
 					case "4":
 						Console.WriteLine("TODO: List vehicle types and count of them here ");
@@ -203,6 +203,19 @@ namespace Garage_ovning5.UI
 			{
 				Console.WriteLine($"No vehicle with license plate {licensePlateNumber} was found.");
 			}
+		}
+
+		public void ListParkedVehicles()
+		{
+			if (_garage == null)
+			{
+				Console.WriteLine("No garage exists");
+				return;
+			}
+
+			Console.WriteLine("\n========= Parked cars =========\n");
+
+			_garage.ListAllVehicles();
 		}
 	}
 }

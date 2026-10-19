@@ -102,10 +102,7 @@ namespace Garage_ovning5.UI
 		private static Vehicle? CreateBoat(string licensePlateNumber, string color)
 		{
 
-			Console.WriteLine("What is your boats length?");
-			double length = double.Parse(Console.ReadLine());
-
-			// TODO: replace double.Parse with InputHelper.ReadDouble (crashes on invalid input)
+			double length = InputHelper.ReadDouble("What is your boats length?");
 
 			return new Boat(licensePlateNumber, color, length);
 		}

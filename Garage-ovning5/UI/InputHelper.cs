@@ -20,6 +20,20 @@ namespace Garage_ovning5.UI
 			}
 		}
 
+		public static double ReadDouble(string prompt)
+		{
+			while(true)
+			{
+				Console.WriteLine(prompt);
+
+				if (double.TryParse(Console.ReadLine(), out double result))
+				{
+					return result;
+				}
+				Console.WriteLine("Invalid input, please enter a valid number");
+			}
+		}
+
 		public static string ReadString(string prompt)
 		{
 			while (true)

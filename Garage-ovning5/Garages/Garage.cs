@@ -138,5 +138,74 @@ namespace Garage_ovning5.Garages
 
 			return null;
 		}
+
+		private static bool MatchesSearch(Vehicle vehicle, VehicleColor? color, int? wheels, VehicleType? type)
+		{
+			if (color != null && vehicle.Color != color)
+			{
+				return false;
+			}
+
+			if (wheels != null && vehicle.NumberOfWheels != wheels)
+			{
+				return false;
+			}
+
+			if (type != null && vehicle.VehicleType != type)
+			{
+				return false;
+			}
+
+			return true;
+
+		}
+
+		public Vehicle[]? SearchByProperties(VehicleColor? color, int? numberOfWheels, VehicleType? vehicleType)
+		{
+			int matchedSearchedCount = 0;
+
+			for (int i = 0; i < _vehicles.Length; i++)
+			{
+				Vehicle? vehicle = _vehicles[i];
+
+				if (vehicle == null)
+				{
+					continue;
+				}
+
+
+				if (MatchesSearch(vehicle, color, numberOfWheels, vehicleType))
+				{
+					matchedSearchedCount++;
+				}
+			}
+
+			if (matchedSearchedCount == 0)
+			{
+				return null;
+			}
+
+			Vehicle[] resultArray = new Vehicle[matchedSearchedCount];
+
+			int resultIndex = 0;
+
+			for (int j = 0; j < _vehicles.Length; j++)
+			{
+				Vehicle? vehicle = _vehicles[j];
+
+				if (vehicle == null)
+				{
+					continue;
+				}
+
+				if (MatchesSearch(vehicle, color, numberOfWheels, vehicleType))
+				{
+					resultArray[resultIndex] = vehicle;
+
+					resultIndex++;
+				}
+			}
+			return resultArray;
+		}
 	}
 }

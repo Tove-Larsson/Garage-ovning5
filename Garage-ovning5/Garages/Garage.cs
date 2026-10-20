@@ -32,6 +32,20 @@ namespace Garage_ovning5.Garages
 			return false;
 		}
 
+		public bool HasFreeParkingSpot()
+		{
+
+			for (int i = 0; i < _vehicles.Length; i++)
+			{
+				if (_vehicles[i] == null)
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
+
 		public bool IsLicensePlateTaken(string licensePlateNumber)
 		{
 			string searchedPlate = licensePlateNumber.Trim().ToUpper();

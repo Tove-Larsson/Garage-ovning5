@@ -26,10 +26,10 @@ namespace Garage_ovning5.UI
 				switch (selectedChoice)
 				{
 					case "1":
-						CreateGarage();
+						HandleCreateGarage();
 						break;
 					case "2":
-						CreatePreParkedGarage();
+						HandleCreatePreParkedGarage();
 						break;
 					case "0":
 						Console.WriteLine("You chose to end the application, goodbye!");
@@ -42,7 +42,7 @@ namespace Garage_ovning5.UI
 			}
 		}
 
-		private void CreateGarage()
+		private void HandleCreateGarage()
 		{
 
 			bool garageCreated = false;
@@ -67,7 +67,7 @@ namespace Garage_ovning5.UI
 			GarageMenu();
 		}
 
-		private void CreatePreParkedGarage()
+		private void HandleCreatePreParkedGarage()
 		{
 			Console.WriteLine("Create a pre-parked garage chosen");
 			Console.WriteLine("\nOne vehicle per vehicle type has been created, plus 5 extra parking spaces!\n");
@@ -108,22 +108,22 @@ namespace Garage_ovning5.UI
 				switch (selectedChoice)
 				{
 					case "1":
-						ParkVehicle();
+						HandleParkVehicle();
 						break;
 					case "2":
-						RetrieveVehicle();
+						HandleRetrieveVehicle();
 						break;
 					case "3":
-						ListParkedVehicles();
+						HandleListParkedVehicles();
 						break;
 					case "4":
-						ListVehicleType();
+						HandleListVehicleTypes();
 						break;
 					case "5":
-						SearchByLicensePlate();
+						HandleSearchByLicensePlate();
 						break;
 					case "6":
-						SearchVehiclesByProperties();
+						HandleSearchByProperties();
 						break;
 					case "0":
 						Console.WriteLine("Back to main menu!");
@@ -137,11 +137,17 @@ namespace Garage_ovning5.UI
 			}
 		}
 
-		private void ParkVehicle()
+		private void HandleParkVehicle()
 		{
 			if (_garage == null)
 			{
 				Console.WriteLine("No garage exists");
+				return;
+			}
+
+			if (!_garage.HasFreeParkingSpot())
+			{
+				Console.WriteLine("\nThe garage is full!\n");
 				return;
 			}
 
@@ -158,6 +164,7 @@ namespace Garage_ovning5.UI
 			VehicleType? type = VehicleInput.ReadVehicleType();
 			if (type == null)
 			{
+				Console.WriteLine("\nParking cancelled\n");
 				return;
 			}
 
@@ -168,7 +175,7 @@ namespace Garage_ovning5.UI
 				Vehicle? vehicle = VehicleCreator.CreateVehicle(licensePlateNumber, color, type.Value);
 				if (vehicle == null)
 				{
-					Console.WriteLine("The vehicle was not created");
+					Console.WriteLine("\nParking cancelled\n");
 					return;
 				}
 
@@ -180,7 +187,7 @@ namespace Garage_ovning5.UI
 				}
 				else
 				{
-					Console.WriteLine("The garage was full!");
+					Console.WriteLine("\nThe vehicle could not be parked\n");
 				}
 
 			}
@@ -192,7 +199,7 @@ namespace Garage_ovning5.UI
 		
 		}
 
-		private void RetrieveVehicle()
+		private void HandleRetrieveVehicle()
 		{
 			if (_garage == null)
 			{
@@ -206,15 +213,15 @@ namespace Garage_ovning5.UI
 
 			if (retrievedVehicle != null)
 			{
-				Console.WriteLine($"Retrieval of vehicle with license plate number: {retrievedVehicle.LicensePlateNumber} was successful!");
+				Console.WriteLine($"\nRetrieval of vehicle with license plate number: {retrievedVehicle.LicensePlateNumber} was successful!\n");
 			}
 			else
 			{
-				Console.WriteLine($"No vehicle with license plate {licensePlateNumber} was found.");
+				Console.WriteLine($"\nNo vehicle with license plate {licensePlateNumber} was found.\n");
 			}
 		}
 
-		private void ListParkedVehicles()
+		private void HandleListParkedVehicles()
 		{
 			if (_garage == null)
 			{
@@ -227,7 +234,7 @@ namespace Garage_ovning5.UI
 			_garage.ListAllVehicles();
 		}
 
-		private void ListVehicleType()
+		private void HandleListVehicleTypes()
 		{
 			if ( _garage == null)
 			{
@@ -245,7 +252,7 @@ namespace Garage_ovning5.UI
 
 		}
 
-		private void SearchByLicensePlate()
+		private void HandleSearchByLicensePlate()
 		{
 			if (_garage == null)
 			{
@@ -258,7 +265,7 @@ namespace Garage_ovning5.UI
 
 			if (vehicle != null)
 			{
-				Console.WriteLine($"\nA parked vehicle with {searchedLicensePlate} was found!\n");
+				Console.WriteLine($"\nA parked vehicle with {searchedLicensePlate.ToUpper()} was found!\n");
 				Console.WriteLine(vehicle);
 			}
 			else
@@ -268,7 +275,7 @@ namespace Garage_ovning5.UI
 			
 		}
 
-		private void SearchVehiclesByProperties()
+		private void HandleSearchByProperties()
 		{
 			if (_garage == null)
 			{

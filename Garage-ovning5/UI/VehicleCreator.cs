@@ -6,7 +6,7 @@ namespace Garage_ovning5.UI
 	internal static class VehicleCreator
 	{
 
-		public static Vehicle? CreateVehicle(VehicleType type, string licensePlateNumber, VehicleColor color)
+		public static Vehicle? CreateVehicle(string licensePlateNumber, VehicleColor color, VehicleType type)
 		{
 
 			switch(type)

@@ -145,15 +145,7 @@ namespace Garage_ovning5.UI
 				return;
 			}
 
-			VehicleType? type = VehicleInput.ReadVehicleType();
-			if (type == null)
-			{
-				return;
-			}
-
-			VehicleColor color = VehicleInput.ReadVehicleColor();
-
-			string licensePlateNumber = InputHelper.ReadString("What is your vehicles license plate number?");
+			string licensePlateNumber = VehicleInput.ReadLicensePlateNumber();
 
 			if (_garage.IsLicensePlateTaken(licensePlateNumber))
 			{
@@ -161,10 +153,19 @@ namespace Garage_ovning5.UI
 				return;
 			}
 
+			VehicleColor color = VehicleInput.ReadVehicleColor();
+
+			VehicleType? type = VehicleInput.ReadVehicleType();
+			if (type == null)
+			{
+				return;
+			}
+
+
 			try
 			{
 
-				Vehicle? vehicle = VehicleCreator.CreateVehicle(type.Value, licensePlateNumber, color);
+				Vehicle? vehicle = VehicleCreator.CreateVehicle(licensePlateNumber, color, type.Value);
 				if (vehicle == null)
 				{
 					Console.WriteLine("The vehicle was not created");

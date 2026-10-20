@@ -6,6 +6,24 @@ namespace Garage_ovning5.UI
 	internal static class VehicleInput
 	{
 
+		public static string ReadLicensePlateNumber()
+		{
+
+			while (true)
+			{
+				Console.WriteLine("What is your vehicles license plate number?");
+
+				string input = Console.ReadLine() ?? string.Empty;
+
+				if (Vehicle.IsValidLicensePlate(input))
+				{
+					return input;
+				}
+
+				Console.WriteLine($"Invalid license plate number, it must be at least {Vehicle.MinimumLicensePlateLength} characters");
+			}
+		}
+
 		public static VehicleType? ReadVehicleType()
 		{
 			while (true)

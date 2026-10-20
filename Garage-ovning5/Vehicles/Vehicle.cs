@@ -4,6 +4,7 @@ namespace Garage_ovning5.Vehicles
 {
 	internal abstract class Vehicle
 	{
+		internal const int MinimumLicensePlateLength = 6;
 
 		private string _licensePlateNumber = string.Empty;
 		private VehicleColor _color;
@@ -22,9 +23,9 @@ namespace Garage_ovning5.Vehicles
 
 				string trimmed = value.Trim();
 
-				if (trimmed.Length < 6)
+				if (trimmed.Length < MinimumLicensePlateLength)
 				{
-					throw new ArgumentException("License plate number must be at least 6 characters");
+					throw new ArgumentException($"License plate number must be at least {MinimumLicensePlateLength} characters");
 				}
 
 				_licensePlateNumber = trimmed.ToUpper();
@@ -59,6 +60,15 @@ namespace Garage_ovning5.Vehicles
 			Color = color;
 			NumberOfWheels = numberOfWheels;
 
+		}
+		public static bool IsValidLicensePlate(string? licensePlateNumber)
+		{
+			if (string.IsNullOrWhiteSpace(licensePlateNumber))
+			{
+				return false;
+			}
+
+			return licensePlateNumber.Trim().Length >= MinimumLicensePlateLength;
 		}
 
 		public override string ToString()

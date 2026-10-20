@@ -42,7 +42,7 @@ namespace Garage_ovning5.UI
 			}
 		}
 
-		public void CreateGarage()
+		private void CreateGarage()
 		{
 
 			bool garageCreated = false;
@@ -67,7 +67,7 @@ namespace Garage_ovning5.UI
 			GarageMenu();
 		}
 
-		public void CreatePreParkedGarage()
+		private void CreatePreParkedGarage()
 		{
 			Console.WriteLine("Create a pre-parked garage chosen");
 			Console.WriteLine("\nOne vehicle per vehicle type has been created, plus 5 extra parking spaces!\n");
@@ -85,7 +85,7 @@ namespace Garage_ovning5.UI
 
 		}
 
-		public void GarageMenu()
+		private void GarageMenu()
 		{
 			bool running = true;
 
@@ -137,7 +137,7 @@ namespace Garage_ovning5.UI
 			}
 		}
 
-		public void ParkVehicle()
+		private void ParkVehicle()
 		{
 			if (_garage == null)
 			{
@@ -145,13 +145,13 @@ namespace Garage_ovning5.UI
 				return;
 			}
 
-			VehicleType? type = ReadVehicleType();
+			VehicleType? type = VehicleInput.ReadVehicleType();
 			if (type == null)
 			{
 				return;
 			}
 
-			VehicleColor color = ReadVehicleColor();
+			VehicleColor color = VehicleInput.ReadVehicleColor();
 
 			string licensePlateNumber = InputHelper.ReadString("What is your vehicles license plate number?");
 
@@ -191,70 +191,7 @@ namespace Garage_ovning5.UI
 		
 		}
 
-		private VehicleType? ReadVehicleType()
-		{
-			while (true)
-			{
-				Console.WriteLine("\nWhat type of vehicle do you want to park?\n");
-				Console.WriteLine("1. Car");
-				Console.WriteLine("2. Motorcycle");
-				Console.WriteLine("3. Bus");
-				Console.WriteLine("4. Airplane");
-				Console.WriteLine("5. Boat");
-				Console.WriteLine("0. Cancel");
-
-				switch (Console.ReadLine())
-				{
-					case "1": return VehicleType.Car;
-					case "2": return VehicleType.Motorcycle;
-					case "3": return VehicleType.Bus;
-					case "4": return VehicleType.Airplane;
-					case "5": return VehicleType.Boat;
-					case "0": return null;
-					default:
-						Console.WriteLine("Invalid input, please try again");
-						break;
-				}
-			}
-		}
-
-		private VehicleColor ReadVehicleColor()
-		{
-			while (true)
-			{
-				Console.WriteLine("\nWhat color is your vehicle?\n");
-				Console.WriteLine("1. Red");
-				Console.WriteLine("2. Blue");
-				Console.WriteLine("3. Black");
-				Console.WriteLine("4. White");
-				Console.WriteLine("5. Green");
-				Console.WriteLine("6. Yellow");
-				Console.WriteLine("7. Pink");
-				Console.WriteLine("8. Silver");
-				Console.WriteLine("9. Grey");
-				Console.WriteLine("10. Purple");
-
-				switch (Console.ReadLine())
-				{
-					case "1": return VehicleColor.Red;
-					case "2": return VehicleColor.Blue;
-					case "3": return VehicleColor.Black;
-					case "4": return VehicleColor.White;
-					case "5": return VehicleColor.Green;
-					case "6": return VehicleColor.Yellow;
-					case "7": return VehicleColor.Pink;
-					case "8": return VehicleColor.Silver;
-					case "9": return VehicleColor.Grey;
-					case "10": return VehicleColor.Purple;
-					default:
-						Console.WriteLine("Invalid input, please try again");
-						break;
-				}
-
-			}
-		}
-
-		public void RetrieveVehicle()
+		private void RetrieveVehicle()
 		{
 			if (_garage == null)
 			{
@@ -276,7 +213,7 @@ namespace Garage_ovning5.UI
 			}
 		}
 
-		public void ListParkedVehicles()
+		private void ListParkedVehicles()
 		{
 			if (_garage == null)
 			{
@@ -289,7 +226,7 @@ namespace Garage_ovning5.UI
 			_garage.ListAllVehicles();
 		}
 
-		public void ListVehicleType()
+		private void ListVehicleType()
 		{
 			if ( _garage == null)
 			{
@@ -307,7 +244,7 @@ namespace Garage_ovning5.UI
 
 		}
 
-		public void SearchByLicensePlate()
+		private void SearchByLicensePlate()
 		{
 			if (_garage == null)
 			{
@@ -330,7 +267,7 @@ namespace Garage_ovning5.UI
 			
 		}
 
-		public void SearchVehiclesByProperties()
+		private void SearchVehiclesByProperties()
 		{
 			if (_garage == null)
 			{
@@ -338,12 +275,11 @@ namespace Garage_ovning5.UI
 				return;
 			}
 
+			VehicleColor? color = VehicleInput.ReadOptionalVehicleColor();
 
-			VehicleColor? color = ReadOptionalVehicleColor();
+			int? numberOfWheels = VehicleInput.ReadOptionalNumberOfWheels();
 
-			int? numberOfWheels = ReadOptionalNumberOfWheels();
-
-			VehicleType? vehicleType = ReadOptionalVehicleType();
+			VehicleType? vehicleType = VehicleInput.ReadOptionalVehicleType();
 
 			Vehicle[]? searchedProperties = _garage.SearchByProperties(color, numberOfWheels, vehicleType);
 
@@ -360,94 +296,6 @@ namespace Garage_ovning5.UI
 				Console.WriteLine(vehicle);
 			}
 
-		}
-
-		private VehicleColor? ReadOptionalVehicleColor()
-		{
-			while (true)
-			{
-				Console.WriteLine("\nWhat color do you want to search for?\n");
-				Console.WriteLine("0. Any color");
-				Console.WriteLine("1. Red");
-				Console.WriteLine("2. Blue");
-				Console.WriteLine("3. Black");
-				Console.WriteLine("4. White");
-				Console.WriteLine("5. Green");
-				Console.WriteLine("6. Yellow");
-				Console.WriteLine("7. Pink");
-				Console.WriteLine("8. Silver");
-				Console.WriteLine("9. Grey");
-				Console.WriteLine("10. Purple");
-
-				switch (Console.ReadLine())
-				{
-					case "0": return null;
-					case "1": return VehicleColor.Red;
-					case "2": return VehicleColor.Blue;
-					case "3": return VehicleColor.Black;
-					case "4": return VehicleColor.White;
-					case "5": return VehicleColor.Green;
-					case "6": return VehicleColor.Yellow;
-					case "7": return VehicleColor.Pink;
-					case "8": return VehicleColor.Silver;
-					case "9": return VehicleColor.Grey;
-					case "10": return VehicleColor.Purple;
-					default:
-						Console.WriteLine("Invalid input, please try again");
-						break;
-				}
-			}
-		}
-
-		private int? ReadOptionalNumberOfWheels()
-		{
-
-			while (true) 
-			{
-				Console.WriteLine("\nHow many wheels do you want to search for in a vehicle? Press enter for any\n");
-
-				string? input = Console.ReadLine();
-
-				if (string.IsNullOrWhiteSpace(input))
-				{
-					return null;
-				}
-
-				if (int.TryParse(input, out int wheels) && wheels >= 0)
-				{
-					return wheels;
-				}
-
-				Console.WriteLine("Invalid input, please enter a number or press Enter");
-			}
-
-		}
-
-		private VehicleType? ReadOptionalVehicleType()
-		{
-			while (true)
-			{
-				Console.WriteLine("\nWhat type of vehicle do you want to search for?\n");
-				Console.WriteLine("0. Any type");
-				Console.WriteLine("1. Car");
-				Console.WriteLine("2. Motorcycle");
-				Console.WriteLine("3. Bus");
-				Console.WriteLine("4. Airplane");
-				Console.WriteLine("5. Boat");
-
-				switch (Console.ReadLine())
-				{
-					case "0": return null;
-					case "1": return VehicleType.Car;
-					case "2": return VehicleType.Motorcycle;
-					case "3": return VehicleType.Bus;
-					case "4": return VehicleType.Airplane;
-					case "5": return VehicleType.Boat;
-					default:
-						Console.WriteLine("Invalid input, please try again");
-						break;
-				}
-			}
 		}
 
 	}

@@ -14,7 +14,9 @@ namespace Garage_ovning5.UI
 
 			while (running)
 			{
+				Console.ForegroundColor = ConsoleColor.Blue;
 				Console.WriteLine("\n========= Main Menu =========\n");
+				Console.ResetColor();
 				Console.WriteLine("Please select what you want to do!\n");
 
 				Console.WriteLine("1. Create a garage");
@@ -91,8 +93,9 @@ namespace Garage_ovning5.UI
 
 			while (running)
 			{
-
+				Console.ForegroundColor = ConsoleColor.Green;
 				Console.WriteLine("\n========= Garage menu =========\n");
+				Console.ResetColor();
 				Console.WriteLine("Please select what you want to do!\n");
 
 				Console.WriteLine("1. Park a vehicle");
@@ -229,7 +232,9 @@ namespace Garage_ovning5.UI
 				return;
 			}
 
+			Console.ForegroundColor = ConsoleColor.Yellow;
 			Console.WriteLine("\n========= Parked vehicles =========\n");
+			Console.ResetColor();
 
 			_garage.ListAllVehicles();
 		}
@@ -242,7 +247,9 @@ namespace Garage_ovning5.UI
 				return;
 			}
 
+			Console.ForegroundColor = ConsoleColor.DarkRed;
 			Console.WriteLine("\n========= Parked vehicle types =========\n");
+			Console.ResetColor();
 
 			Console.WriteLine($"Cars: {_garage.CountOfVehicleType(VehicleType.Car)}");
 			Console.WriteLine($"Motorcycles: {_garage.CountOfVehicleType(VehicleType.Motorcycle)}");

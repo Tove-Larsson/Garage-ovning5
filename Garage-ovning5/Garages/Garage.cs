@@ -5,10 +5,18 @@ namespace Garage_ovning5.Garages
 {
 	internal class Garage
 	{
+
+		public const int MaximumCapacity = 2000;
+
 		private Vehicle?[] _vehicles;
 
 		public Garage(int capacity)
 		{
+			if (capacity < 1 || capacity > MaximumCapacity)
+			{
+				throw new ArgumentOutOfRangeException(nameof(capacity), $"Capacity must be between 1 and {MaximumCapacity}");
+			}
+
 			_vehicles = new Vehicle?[capacity];
 		}
 

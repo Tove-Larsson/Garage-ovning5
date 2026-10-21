@@ -51,19 +51,17 @@ namespace Garage_ovning5.UI
 
 			while (!garageCreated)
 			{
+				Console.WriteLine("\nHow many parking spaces should the garage have?\n");
 
-				Console.WriteLine("How many parking spaces should the garage have?");
-
-				if (int.TryParse(Console.ReadLine(), out int parkingSpaces) && parkingSpaces > 0)
+				if (int.TryParse(Console.ReadLine(), out int parkingSpaces) && parkingSpaces > 0 && parkingSpaces <= Garage.MaximumCapacity)
 				{
 					Console.WriteLine($"A garage has been created with {parkingSpaces} parking spaces!");
 					_garage = new Garage(parkingSpaces);
 					garageCreated = true;
-					
 				}
 				else
 				{
-					Console.WriteLine("Invalid input, please try again");
+					Console.WriteLine($"Invalid input, please enter a number between 1 and {Garage.MaximumCapacity}");
 				}
 			}
 			GarageMenu();

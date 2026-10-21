@@ -16,19 +16,12 @@ namespace Garage_ovning5.Vehicles
 			get { return _licensePlateNumber; }
 			set
 			{
-				if (string.IsNullOrWhiteSpace(value))
+				if (!IsValidLicensePlate(value))
 				{
-					throw new ArgumentException("License plate number can not be empty");
+					throw new ArgumentException($"License plate number must be at least {MinimumLicensePlateLength} characters and contain only letters and digits");
 				}
 
-				string trimmed = value.Trim();
-
-				if (trimmed.Length < MinimumLicensePlateLength)
-				{
-					throw new ArgumentException($"License plate number must be at least {MinimumLicensePlateLength} characters");
-				}
-
-				_licensePlateNumber = trimmed.ToUpper();
+				_licensePlateNumber = value.Trim().ToUpper();
 			}
 		}
 
@@ -68,7 +61,22 @@ namespace Garage_ovning5.Vehicles
 				return false;
 			}
 
-			return licensePlateNumber.Trim().Length >= MinimumLicensePlateLength;
+			string trimmed = licensePlateNumber.Trim();
+
+			if (trimmed.Length < MinimumLicensePlateLength)
+			{
+				return false;
+			}
+
+			foreach (char c in trimmed)
+			{
+				if (!char.IsLetterOrDigit(c))
+				{
+					return false;
+				}
+			}
+
+			return true;
 		}
 
 		public override string ToString()

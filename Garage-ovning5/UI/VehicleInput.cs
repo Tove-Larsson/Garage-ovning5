@@ -17,10 +17,10 @@ namespace Garage_ovning5.UI
 
 				if (Vehicle.IsValidLicensePlate(input))
 				{
-					return input;
+					return input.Trim().ToUpper();
 				}
 
-				Console.WriteLine($"Invalid license plate number, it must be at least {Vehicle.MinimumLicensePlateLength} characters");
+				Console.WriteLine($"License plate number must be at least {Vehicle.MinimumLicensePlateLength} characters and contain only letters and digits");
 			}
 		}
 
